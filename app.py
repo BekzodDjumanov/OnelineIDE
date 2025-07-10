@@ -5,12 +5,12 @@ import os
 
 app = Flask(__name__)
 
-# Route to serve the main HTML page
+
 @app.route('/')
 def index():
-    return render_template('index.html')  # make sure your file is in templates/
+    return render_template('index.html')  
 
-# Route to run Python code
+
 @app.route('/run', methods=['POST'])
 def run_code():
     data = request.get_json()
@@ -20,7 +20,7 @@ def run_code():
         return jsonify({'output': 'No code provided.'}), 400
 
     try:
-        # Run code using a subprocess
+        
         result = subprocess.run(
             [sys.executable, "-c", code],
             capture_output=True,
@@ -34,6 +34,5 @@ def run_code():
     except Exception as e:
         return jsonify({'output': f'❌ Error: {str(e)}'})
 
-# Run the Flask server
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

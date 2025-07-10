@@ -1,10 +1,10 @@
 document.querySelectorAll('.submenu-link').forEach(link => {
   link.addEventListener('click', function (e) {
-    e.preventDefault(); // Prevent the default href action
+    e.preventDefault(); 
     const theme = this.getAttribute('data-theme');
 
     if (theme) {
-      editor.setOption("theme", theme); // Change CodeMirror theme
+      editor.setOption("theme", theme); 
       console.log("Theme changed to:", theme);
     }
   });
@@ -39,17 +39,17 @@ async function runCode() {
     });
 
     if (!response.ok) {
-      // Handle HTTP-level errors
-      const errorText = await response.text(); // plain text fallback
+      
+      const errorText = await response.text();
       throw new Error(`Server error ${response.status}: ${errorText}`);
     }
 
     const result = await response.json();
 
-    // Show output or error returned by the backend
+   
     outputEl.textContent = result.output || "⚠️ No output.";
   } catch (err) {
-    // Network errors, JSON errors, or thrown exceptions
+   
     outputEl.innerHTML = `<span style="color: red;">❌ ${err.message}</span>`;
   }
 }
