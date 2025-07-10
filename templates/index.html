@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/lib/codemirror.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/material-darker.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/monokai.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/material-palenight.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/duotone-dark.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/dracula.css">
 
 
 
-    <title>Online IDE</title>
+    <title>Python IDE</title>
 </head>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/lib/codemirror.min.js"></script>
@@ -23,6 +23,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.0/addon/edit/closebrackets.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.0/addon/display/indentguides.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/addon/scroll/indent.js"></script>
+  
 
 
   
@@ -31,7 +32,7 @@
   </div>
 
     <div class="top-header">
-        <div class="logo"><i class="fa-solid fa-globe" style="font-size: 24px; margin-right: 3px;"></i> Online
+        <div class="logo"><i class="fa-solid fa-globe" style="font-size: 26px; margin-right: 3px;"></i> Online
            IDE</div>
         <div class="right-section">
 
@@ -62,16 +63,16 @@
                 </a>
                 <div class="submenu">
                   <div class="submenu-item">
-                    <a href="#" class="submenu-link" data-theme="monokai"><i class="fa-solid fa-circle-info"></i> Monokai </a>
+                    <a href="#" class="submenu-link" data-theme="material-palenight">🌙 Pale Night </a>
                   </div>
                   <div class="submenu-item">
-                    <a href="#" class="submenu-link" data-theme="material-darker"><i class="fa-solid fa-circle-info"></i> Dark (default) </a>
+                    <a href="#" class="submenu-link" data-theme="material-darker">✨ Dark (default) </a>
                   </div>
                   <div class="submenu-item">
-                    <a href="#" class="submenu-link" data-theme="duotone-dark"><i class="fa-solid fa-circle-info"></i> Duotone-Dark </a>
+                    <a href="#" class="submenu-link" data-theme="duotone-dark">🌑 Duotone Dark </a>
                   </div>
                   <div class="submenu-item">
-                    <a href="#" class="submenu-link" data-theme="dracula"><i class="fa-solid fa-circle-info"></i> Dracula </a>
+                    <a href="#" class="submenu-link" data-theme="dracula">🧛🏻 Dracula </a>
                   </div>
                 </div>
               </div>
@@ -85,7 +86,7 @@
             <div class="editor"><i class="fa-solid fa-code"></i> Editor</div>
 
             <button class="refresh-btn" onclick="refreshEditor()">
-              <i class="fa-solid fa-rotate-right"></i> Refresh
+              <i class="fa-solid fa-rotate-right"></i> Reset
             </button>
             
 
@@ -173,6 +174,3 @@ gsap.to(".gradient-border", 3, {
   delay: 3,
 });
 </script>
-
-  
-  
