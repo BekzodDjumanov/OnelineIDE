@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/lib/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/material-darker.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/monokai.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/duotone-dark.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/theme/dracula.css">
+
+
+
+    <title>Python IDE</title>
+</head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/lib/codemirror.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/mode/python/python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.0/addon/edit/closebrackets.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.0/addon/display/indentguides.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.2/addon/scroll/indent.js"></script>
+
+
+  
+  <div class="gradient-border">
+    <div class="coming-soon">🤫 <i class="fa-brands fa-java"></i> Java</div>
+  </div>
+
+    <div class="top-header">
+        <div class="logo"><i class="fa-solid fa-globe" style="font-size: 24px; margin-right: 3px;"></i> Online
+           IDE</div>
+        <div class="right-section">
+
+          <button type="button" class="btn">
+            <strong><img class="python-img" src="{{ url_for('static', filename='images/pythonide.png') }}" alt="Python logo"> Python</strong>
+            <div id="container-stars">
+              <div id="stars"></div>
+            </div>
+
+            <div id="glow">
+              <div class="circle"></div>
+              <div class="circle"></div>
+            </div>
+          </button>
+
+            <div class="menu">
+              <div class="item">
+                <a href="#" class="link">
+                  <span3><i class="fa-solid fa-ghost" style="margin-right: 1rem;"></i> Theme </span3>
+                  <svg viewBox="0 0 360 360" xml:space="preserve">
+                    <g id="SVGRepo_iconCarrier">
+                      <path
+                        id="XMLID_225_"
+                        d="M325.607,79.393c-5.857-5.857-15.355-5.858-21.213,0.001l-139.39,139.393L25.607,79.393 c-5.857-5.857-15.355-5.858-21.213,0.001c-5.858,5.858-5.858,15.355,0,21.213l150.004,150c2.813,2.813,6.628,4.393,10.606,4.393 s7.794-1.581,10.606-4.394l149.996-150C331.465,94.749,331.465,85.251,325.607,79.393z"
+                      ></path>
+                    </g>
+                  </svg>
+                </a>
+                <div class="submenu">
+                  <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-theme="monokai"><i class="fa-solid fa-circle-info"></i> Monokai </a>
+                  </div>
+                  <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-theme="material-darker"><i class="fa-solid fa-circle-info"></i> Dark (default) </a>
+                  </div>
+                  <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-theme="duotone-dark"><i class="fa-solid fa-circle-info"></i> Duotone-Dark </a>
+                  </div>
+                  <div class="submenu-item">
+                    <a href="#" class="submenu-link" data-theme="dracula"><i class="fa-solid fa-circle-info"></i> Dracula </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>          
+      </div>
+
+      <div class="box-wrapper">
+        <div class="input">
+            <div class="editor"><i class="fa-solid fa-code"></i> Editor</div>
+
+            <button class="refresh-btn" onclick="refreshEditor()">
+              <i class="fa-solid fa-rotate-right"></i> Refresh
+            </button>
+            
+
+            <button class="run" onclick="runCode()">
+                <i class="fa-solid fa-gear"></i> Run
+              </button>              
+            <textarea id="code-input" placeholder="">
+# Online Python compiler (interpreter) to run Python3 online.
+from typing import List
+
+class BestIDE:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        hashmap = {}
+        
+        for i, v in enumerate(nums):
+            res = target - v
+            if res in hashmap:
+                return hashmap[res], i
+            hashmap[v] = i
+        return -1;
+        
+    
+a = BestIDE()
+print(a.twoSum([1,2,3,4,5], 7))
+            </textarea>
+
+        </div>
+        <div class="output">
+            <div class="output-icon"><i class="fa-solid fa-bolt"></i> Output</div>
+            <button class="clear" onclick="clearOutput()">
+              <i class="fa-solid fa-minus"></i> Clear
+            </button>
+            
+  
+            <div class="output-code" id="output">
+              <div class="waiting"><i class="fa-solid fa-clock"></i></div>
+            </div>
+        </div>
+
+
+      </div>
+
+      <footer class="footer">
+
+        <div class="social">
+          <a href="https://linkedin.com/in/bekzod-djumanov"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/BekzodDjumanov"><i class="fa-brands fa-github"></i></a>
+          <a href="mailto:bdjuman1@terpmail.umd.edu"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+            
+        <p class="copyright">&copy; Bekzod Djumanov | All Rights Reserved</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="main.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
+
+<script>
+  gsap.from(".input", 2,{
+    opacity: 0,
+    x: "-50",
+    ease: "power2.inOut",
+  });
+
+  gsap.from(".output", 2,{
+    opacity: 0,
+    x: "50",
+    ease: "power2.inOut",
+  });
+
+</script>
+
+<script>
+gsap.to(".gradient-border", 3, {
+  y: "40",
+  opacity: 1,
+  ease: "power4.inOut",
+});
+gsap.to(".gradient-border", 3, {
+  y: "-40",
+  opacity: 0,
+  ease: "power4.inOut",
+  delay: 3,
+});
+</script>
+
+  
+  
