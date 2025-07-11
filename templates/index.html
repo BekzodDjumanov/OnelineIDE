@@ -14,7 +14,7 @@
 
 
 
-    <title>Online IDE</title>
+    <title>Python IDE</title>
 </head>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/lib/codemirror.min.js"></script>
@@ -85,9 +85,19 @@
         <div class="input">
             <div class="editor"><i class="fa-solid fa-code"></i> Editor</div>
 
-            <button class="refresh-btn" onclick="refreshEditor()">
+            <button class="refresh-btn" onclick="promptDelete()">
               <i class="fa-solid fa-rotate-right"></i> Reset
             </button>
+            <div class="overlay"></div>
+            <div class="disclaimer-wrapper">
+              <button class="disclaimer" onclick="refreshEditor()">
+                <i class="fa-solid fa-rotate-right"></i> Delete
+              </button>
+
+              <button class="reject" onclick="reject()">
+                <i class="fa-solid fa-x"></i>
+              </button>
+            </div>
             
 
             <button class="run" onclick="runCode()">

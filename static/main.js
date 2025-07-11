@@ -4,7 +4,7 @@ document.querySelectorAll('.submenu-link').forEach(link => {
     const theme = this.getAttribute('data-theme');
 
     if (theme) {
-      editor.setOption("theme", theme); 
+      editor.setOption("theme", theme);
       console.log("Theme changed to:", theme);
     }
   });
@@ -28,6 +28,12 @@ async function runCode() {
   const code = editor.getValue();
   const outputEl = document.querySelector(".output-code");
 
+    gsap.set(outputEl, { opacity: 0, display: "block" });
+
+    gsap.to(outputEl, .5, {
+      opacity: 1,
+      ease: "power2.inOut"
+    });
 
   try {
     const response = await fetch('/run', {
@@ -40,16 +46,15 @@ async function runCode() {
 
     if (!response.ok) {
       
-      const errorText = await response.text();
+      const errorText = await response.text(); 
       throw new Error(`Server error ${response.status}: ${errorText}`);
     }
 
     const result = await response.json();
 
-   
+    
     outputEl.textContent = result.output || "⚠️ No output.";
   } catch (err) {
-   
     outputEl.innerHTML = `<span style="color: red;">❌ ${err.message}</span>`;
   }
 }
@@ -60,10 +65,95 @@ function clearOutput() {
 }
 let initialCode = ``;
 
+function promptDelete() {
+  if (typeof editor !== 'undefined' && editor !== null && editor.getValue().trim() !== ""){
+      document.querySelector(".overlay").style.display = "block";
+      document.querySelector(".disclaimer").style.display = "block";
+      document.querySelector(".reject").style.display = "block";
+
+      gsap.fromTo(".overlay",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: "power2.out" }
+      );
+
+      gsap.fromTo(".disclaimer",
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)", delay: 0.1 }
+      );
+
+      gsap.fromTo(".reject",
+        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)", delay: 0.1 }
+      );
+    }
+}
+
+function reject(){
+  gsap.to(".disclaimer", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.3,
+    ease: "power2.in",
+    onComplete: () => {
+      document.querySelector(".disclaimer").style.display = "none";
+    }
+  });
+
+  gsap.to(".reject", {
+    opacity: 0,
+    scale: 0.8,
+    duration: 0.3,
+    ease: "power2.in",
+    onComplete: () => {
+      document.querySelector(".disclaimer").style.display = "none";
+    }
+  });
+
+  gsap.to(".overlay", {
+    opacity: 0,
+    duration: 0.3,
+    ease: "power2.in",
+    onComplete: () => {
+      document.querySelector(".overlay").style.display = "none";
+    }
+  });
+}
+
+
 function refreshEditor() {
   if (typeof editor !== 'undefined' && editor !== null) {
     editor.setValue(initialCode);
     editor.refresh();
+
+    gsap.to(".disclaimer", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        document.querySelector(".disclaimer").style.display = "none";
+      }
+    });
+
+    gsap.to(".reject", {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        document.querySelector(".disclaimer").style.display = "none";
+      }
+    });
+
+    gsap.to(".overlay", {
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.in",
+      onComplete: () => {
+        document.querySelector(".overlay").style.display = "none";
+      }
+    });
+    
   } else {
     console.warn("CodeMirror editor instance not found.");
   }
