@@ -697,7 +697,6 @@ color: #a5d6a7;
   z-index: 14;
   border-radius: 16px;
   margin-top: 3rem;
-
 }
 .disclaimer-wrapper {
   position: absolute;
@@ -835,6 +834,11 @@ color: #a5d6a7;
     display: none;
   }
 }
+@media (max-width: 768px){
+  .overlay{
+    height: 80%;
+  }
+}
 
 @media (max-width: 625px){
   .btn{
@@ -866,5 +870,13 @@ color: #a5d6a7;
     font-size: 16px;
     margin-right: 2rem;
   }
+  .refresh-btn{
+    padding: .5rem .75rem;
+  }
+  .overlay{
+    height: 80%;
+  }
+  .disclaimer{
+    white-space: nowrap;
+  }
 }
-
