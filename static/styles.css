@@ -321,7 +321,6 @@ to {
   font-weight: bold;
   font-size: 26px;
   color: rgba(255, 255, 255, 0.8);
-  cursor: pointer;
   backdrop-filter: blur(16px);
   padding: 1rem;
 }
@@ -585,15 +584,15 @@ color: #a5d6a7;
 
 .editor, .refresh-btn, .run {
   background: rgb(255, 56, 60);
-  border: 1px solid white;
   color: white;
   padding: 0.5rem 2rem;
   border-radius: 8px;
   user-select: none;
-  transition: .3s ease-in-out;
+  transition: .4s ease-in-out;
   z-index: 1;
   font-weight: 600;
 }
+
 @keyframes borderChange{
   0%{
     border: 1px solid rgb(255, 141, 140);
@@ -636,13 +635,22 @@ color: #a5d6a7;
 
   box-shadow: 0 4px 14px rgba(255, 62, 84, 0.3);
   backdrop-filter: blur(6px);
-  transition: all 0.25s ease-in-out;
+  transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
-.clear:active, .run:active, .refresh-btn:active {
-  transform: scale(0.9);
-  background: linear-gradient(135deg, #e32b43, #e45a5a);
-  box-shadow: 0 2px 8px rgba(255, 62, 84, 0.2);
+.clear:hover,
+.run:hover,
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(255, 62, 84, 0.4);
+  transition: .5s ease-in-out;
+}
+
+.clear:active,
+.run:active,
+.refresh-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 4px 14px rgba(255, 62, 84, 0.3);
 }
 
 
