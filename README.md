@@ -47,14 +47,14 @@ Ensure when running:
 - `pip` for installing Flask
 ```
 
-## Navigation
+## 🧭 Navigation
 
 ```
 http://localhost:5000/python for Python IDE
 http://localhost:5000/java for Java IDE
 ```
 
-## Project Structure
+## 🏛️ Project Structure
 ```
 .
 ├── static/
@@ -84,6 +84,8 @@ http://localhost:5000/java for Java IDE
 - Output highlighting & file uploads
 
 - Custom language requests
+
+- Optimized speed for Java compilation
 
 ## ✨ Acknowledgments
 Thanks to:

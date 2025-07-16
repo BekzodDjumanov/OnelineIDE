@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
 FROM python:3.11-slim
 
-# Install OpenJDK 17 (you can adjust version as needed)
+# Install OpenJDK 17
 RUN apt-get update && apt-get install -y openjdk-17-jdk && apt-get clean
 
 # Set environment variables

@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 import subprocess
 import os
 import uuid
+import tempfile
+import shutil
 
 app = Flask(__name__)
 
@@ -9,17 +11,17 @@ app = Flask(__name__)
 def home():
     return redirect(url_for('python_ide'))
 
-# Serve Python IDE
+# serve Python IDE
 @app.route('/python')
 def python_ide():
     return render_template('index.html')
 
-# Serve Java IDE
+# serve Java IDE
 @app.route('/java')
 def java_ide():
     return render_template('java.html')
 
-# Universal runner for both
+# universal runner for both
 @app.route('/run', methods=['POST'])
 def run_code():
     data = request.get_json()
@@ -50,23 +52,46 @@ def run_python(code):
 
 def run_java(code):
     try:
+        temp_dir = tempfile.mkdtemp()
         filename = "Main"
-        java_file = f"{filename}.java"
+        java_file = os.path.join(temp_dir, f"{filename}.java")
 
+        # Write Java code to file
         with open(java_file, 'w') as f:
             f.write(code)
 
-        compile = subprocess.run(['javac', java_file], capture_output=True, text=True)
-        if compile.returncode != 0:
-            return jsonify({'output': compile.stderr})
+        # Compile Java code
+        compile_proc = subprocess.run(
+            ['javac', java_file],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            cwd=temp_dir
+        )
 
-        run = subprocess.run(['java', filename], capture_output=True, text=True)
-        output = run.stdout if run.stdout else run.stderr
+        if compile_proc.returncode != 0:
+            shutil.rmtree(temp_dir)
+            return jsonify({'output': compile_proc.stderr})
 
-        os.remove(java_file)
-        os.remove(f"{filename}.class")
+        # Run compiled Java class
+        run_proc = subprocess.run(
+            ['java', '-classpath', temp_dir, filename],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=3  # shorter timeout for faster failover
+        )
+
+        output = run_proc.stdout.strip() if run_proc.stdout else run_proc.stderr.strip()
+
+        # Clean up
+        shutil.rmtree(temp_dir)
 
         return jsonify({'output': output})
+
+    except subprocess.TimeoutExpired:
+        return jsonify({'output': 'Execution timed out.'}), 504
+
     except Exception as e:
         return jsonify({'output': f'Error: {str(e)}'}), 500
 
