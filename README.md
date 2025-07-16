@@ -50,8 +50,8 @@ Ensure when running:
 ## Navigation
 
 ```
-👉 http://localhost:5000/python for Python IDE
-👉 http://localhost:5000/java for Java IDE
+http://localhost:5000/python for Python IDE
+http://localhost:5000/java for Java IDE
 ```
 
 ## Project Structure
@@ -73,17 +73,17 @@ Ensure when running:
 
 ## 🌟 Future Improvements
 
-Add support for C/C++ and JavaScript
+- Add support for C/C++ and JavaScript
 
-User authentication for saved code
+- User authentication for saved code
 
-Real-time collaborative editing
+- Real-time collaborative editing
 
-Docker-based execution containers
+- Theming customization for users
 
-Theming customization for users
+- Output highlighting & file uploads
 
-Output highlighting & file uploads
+- Custom language requests
 
 ## ✨ Acknowledgments
 Thanks to:
