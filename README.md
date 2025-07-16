@@ -4,7 +4,7 @@ A sleek, fully functional **web-based IDE compiler** for Python and Java. Design
 
 # Manifesto
 
-With the recent surge in IDE applications like Kiro and Claude-based platforms, I sought to develop an accessible Online coding platform that users can utilize whether it be within occupational, professional or leisurely environment. In the future, it is Artifical Intelligence that will reep those who sow.
+With the recent surge in IDE applications like Kiro and Claude-based platforms, I sought to develop an accessible Online coding platform that users can utilize whether it be within occupational, professional or leisurely environments. In the future, it is Artifical Intelligence that will reep those who sow.
 
 <div align="center">
   <img src="python.png" alt="Python IDE" width="45%" style="margin-right: 2rem;" />
