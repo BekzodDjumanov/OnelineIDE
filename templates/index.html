@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.14/lib/codemirror.min.css">
@@ -27,14 +26,29 @@
 
 
   
-  <div class="gradient-border">
+  <!--<div class="gradient-border">
     <div class="coming-soon">🤫 <i class="fa-brands fa-java"></i> Java</div>
-  </div>
+  </div>-->
 
     <div class="top-header">
         <div class="logo"><i class="fa-solid fa-globe" style="font-size: 26px; margin-right: 3px;"></i> Online
            IDE</div>
         <div class="right-section">
+
+
+          <button onclick="window.location.href='{{ url_for('java_ide') }}'" type="button" class="btn" style="background-image: linear-gradient(#2c003e, #2c003e),
+          linear-gradient(
+            137.48deg,
+            #ff4ecf 10%,
+            #7a00ff 45%,
+            #c600ff 67%,
+            #330066 87%
+          );">
+            <strong>
+              <img class="java-img" src="{{ url_for('static', filename='images/java.png') }}" alt="Java logo"> Java
+            </strong>
+            <div id="container-stars"><div id="stars"></div></div>
+          </button>          
 
           <button type="button" class="btn">
             <strong><img class="python-img" src="{{ url_for('static', filename='images/pythonide.png') }}" alt="Python logo"> Python</strong>
@@ -91,7 +105,7 @@
             <div class="overlay"></div>
             <div class="disclaimer-wrapper">
               <button class="disclaimer" onclick="refreshEditor()">
-                <i class="fa-solid fa-rotate-right"></i> Delete
+                <i class="fa-solid fa-trash"></i> Delete
               </button>
 
               <button class="reject" onclick="reject()">
@@ -151,7 +165,6 @@ print(a.twoSum([1,2,3,4,5], 7))
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
-    <script src="main.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 </body>
 </html>
