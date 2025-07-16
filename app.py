@@ -56,11 +56,11 @@ def run_java(code):
         filename = "Main"
         java_file = os.path.join(temp_dir, f"{filename}.java")
 
-        # Write Java code to file
+        
         with open(java_file, 'w') as f:
             f.write(code)
 
-        # Compile Java code
+        
         compile_proc = subprocess.run(
             ['javac', java_file],
             stdout=subprocess.PIPE,
@@ -73,13 +73,13 @@ def run_java(code):
             shutil.rmtree(temp_dir)
             return jsonify({'output': compile_proc.stderr})
 
-        # Run compiled Java class
+        
         run_proc = subprocess.run(
             ['java', '-classpath', temp_dir, filename],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            timeout=3  # shorter timeout for faster failover
+            timeout=3  
         )
 
         output = run_proc.stdout.strip() if run_proc.stdout else run_proc.stderr.strip()
